@@ -13,11 +13,15 @@ mix
   .sass('src/sass/main.sass', 'dist')
   .sass('src/sass/admin-login.sass', 'dist')
 
-  .disableNotifications()
   .browserSync({
-    proxy: "localhost/bocco",
-    files: ["./**/*.php", "./dist/*.js", "./dist/*.css"]
-  });
+    proxy: {
+      target: "https://boccogroup.digid/",
+      ws: true,
+    },
+    https: true,
+    files: ["./**/*.php", "./dist/js/*.js", "./dist/css/*.css"]
+  })
+  .disableNotifications();
 
 if (!mix.inProduction()) {
   mix
