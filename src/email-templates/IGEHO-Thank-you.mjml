@@ -1,0 +1,63 @@
+<mjml>
+  <mj-head>
+    <mj-font name="miller-headline" href="https://use.typekit.net/opz5rti.css" />
+    <mj-title>Vielen Dank für Ihre Anfrage!</mj-title>
+    <mj-preview>Deine Anmeldung war erfolgreich!</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="'Roboto', sans-serif;" line-height="26px" font-size="14px" color="#0E324A" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#080F26">
+        	<		mj-section>
+      <mj-column>
+        <mj-spacer height="60px" />
+      </mj-column>
+    </mj-section>
+    <!-- Logo Header -->
+    <mj-section background-color="#fff" padding="40px 0 0 0">
+      <mj-column>
+        <mj-image width="252px" src="https://boccogroup.com/wp-content/uploads/igeho-bocco-logo.png" alt="Bocco Logo"/>
+      </mj-column>
+            <mj-column>
+        <mj-image width="252px" src="https://boccogroup.com/wp-content/uploads/igeho-planet-logo.png" alt="Planet Logo"/>
+      </mj-column>
+            <mj-column>
+        <mj-image width="252px" src="https://boccogroup.com/wp-content/uploads/igeho-strav-logo.png" alt="Straiv Logo"/>
+      </mj-column>
+    </mj-section>
+     <mj-section background-color="#fff">
+      <mj-column>
+        <mj-divider border-width="2px" border-style="solid" border-color="#080F26" />
+      </mj-column>
+    </mj-section>
+    <!-- Email Info  -->
+    <mj-section background-color="#fff" padding-top="20px" padding-bottom="40px">
+      <mj-column width="500px">
+        <mj-text font-size="20px" font-weight="600" color="#080F26">
+          Vielen Dank für deine Anmeldung!
+        </mj-text>
+        <mj-text color="#080F26">
+          Hallo [your-vorname]
+        </mj-text>
+        <mj-text color="#080F26">
+Vielen Dank für deine Anmeldung zur After IGEHO Party.
+</mj-text>
+Dein Platz ist gesichert und wir freuen uns, dich bald begrüssen zu dürfen.
+<mj-text color="#080F26">
+<strong>Ort:</strong> ART HOUSE Rooftop Bar & Lounge, Steinenvorstadt 42, 4051 Basel <br>
+<strong>Datum:</strong> Montag, 17.11.2025<br>
+<strong>Zeit:</strong> Ab 17:00 Uhr
+  </mj-text>
+        </mj-text>
+        <mj-text color="#080F26">
+Bis bald!
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-spacer height="60px" />
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
