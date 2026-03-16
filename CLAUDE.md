@@ -1,10 +1,12 @@
-# Bocco Group — Project Context
+end # Bocco Group — Project Context
 
 ## Stack
 - WordPress custom theme
 - SASS + Laravel Mix 6
 - Bootstrap 5.1
 - Swiper 8
+- GSAP 3 + ScrollTrigger (animações)
+- Lenis (smooth scroll)
 - PHP 8.0+
 
 ## Custom Post Types
@@ -128,6 +130,41 @@ Cada directório de produto contém: `intro.php`, `content-1.php`, `content-2.ph
 - SASS source: `src/sass/` → compilado para `dist/`
 - JS source: `src/js/` → compilado para `dist/`
 - `npm run dev` / `npm run watch` / `npm run production`
+
+## Animações (GSAP + Lenis)
+
+### Arquitectura JS
+- `src/js/custom/lenis.js` — inicializa Lenis + GSAP + ScrollTrigger juntos; o `gsap.ticker` é o **único** RAF loop (nunca usar `requestAnimationFrame` separado para o Lenis). Expõe `window.lenis` globalmente.
+- `src/js/custom/gsap.js` — presets de animação com `data-animate`; usa timelines `gsap.fromTo()` por elemento para permitir reverse suave.
+- Ordem de import no `main.js`: `lenis` → `gsap` → `custom` → `swiper` → `fancybox`
+
+### Data attributes para animações
+Adicionar nos template-parts PHP:
+- `data-animate="<preset>"` — tipo de animação (default: `fade-up`)
+- `data-animate-delay="0.2"` — atraso em segundos
+- `data-animate-duration="1"` — duração em segundos
+- `data-animate-start="top 75%"` — posição de trigger do ScrollTrigger
+- `data-animate-once="true"` — anima só uma vez (default: repete ao re-entrar no viewport)
+- `data-animate-stagger="0.15"` — anima filhos em sequência (usar `data-animate-child` nos filhos)
+
+### Presets disponíveis
+`fade-up`, `fade-down`, `fade-left`, `fade-right`, `fade-in`, `zoom-in`, `zoom-out`, `flip-up`, `slide-up`
+
+### Exemplo stagger
+```html
+<div data-animate="fade-up" data-animate-stagger="0.15">
+  <div data-animate-child>Item 1</div>
+  <div data-animate-child>Item 2</div>
+</div>
+```
+
+### Exemplo em `wp_get_attachment_image`
+```php
+echo wp_get_attachment_image( $image, $size, false, array( 'data-animate' => 'fade-in' ) );
+```
+
+### CSS — evitar conflitos
+Nunca usar `transition: all` em elementos animados pelo GSAP. Especificar propriedades individuais (ex: `transition: background-color .3s, box-shadow .3s`), caso contrário o CSS transition compete com o GSAP e causa atrasos visuais.
 
 ## Customizer
 Opções do tema no Customizer WP (ficheiros em `inc/customizer/`):
