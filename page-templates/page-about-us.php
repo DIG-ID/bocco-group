@@ -1,7 +1,10 @@
 <?php
 /**
  * Template Name: About Us Page Template
+ *
+ * @package BoccoGroup
  */
+
 ?>
 
 <?php get_header(); ?>

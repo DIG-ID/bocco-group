@@ -1,9 +1,11 @@
 <?php
 /**
  * Template Name: Contacts Page Template
+ *
+ * @package BoccoGroup
  */
-?>
 
+?>
 <?php get_header(); ?>
 	<?php do_action( 'before_main_content' ); ?>
 		<?php

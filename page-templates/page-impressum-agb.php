@@ -1,9 +1,11 @@
 <?php
 /**
  * Template Name: Legal Info Page Template
+ *
+ * @package BoccoGroup
  */
-?>
 
+?>
 <?php get_header(); ?>
 	<?php do_action( 'before_main_content' ); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
