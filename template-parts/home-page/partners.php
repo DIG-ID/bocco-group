@@ -1,11 +1,11 @@
 <section id="section-partners" class="section section-partners">
 	<div class="container">
 		<div class="row align-items-center">
-			<div class="col-12 col-lg-6">
-				<h2 class="section-partners__title"><?php the_field( 'partners_title' ); ?></h2>
-				<p class="section-partners__description"><?php the_field( 'partners_description' ); ?></p>
+			<div class="col-12 col-lg-6" data-animate="fade-left" data-animate-stagger="0.15">
+				<h2 class="section-partners__title" data-animate-child><?php the_field( 'partners_title' ); ?></h2>
+				<p class="section-partners__description" data-animate-child><?php the_field( 'partners_description' ); ?></p>
 			</div>
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-6" data-animate="fade-in">
 				<div class="swiper partners-swiper">
 					<div class="swiper-wrapper">
 						<?php

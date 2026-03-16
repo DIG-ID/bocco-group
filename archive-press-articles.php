@@ -17,8 +17,8 @@ get_header(); ?>
 			<div class="row">
 				<?php while ( have_posts() ) : ?>
 					<?php the_post(); ?>
-						<div class="col-12 col-md-6 col-lg-6 col-xl-4">
-							<article id="press-<?php the_ID(); ?>" <?php post_class(); ?>>
+						<div class="col-12 col-md-6 col-lg-6 col-xl-4" data-animate="fade-up" data-animate-stagger="0.25">
+							<article id="press-<?php the_ID(); ?>" <?php post_class(); ?> data-animate-child>
 								<p class="press-publisher"><?php the_field( 'press_publisher' ); ?></p>
 								<!-- <p class="press-date"><?php //the_date( 'j F Y' ); ?></p> -->
 								<h2 class="press-title"><?php the_title(); ?></h2>

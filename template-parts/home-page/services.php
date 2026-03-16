@@ -6,7 +6,7 @@
 				$image = get_field( 'services_image' );
 				$size  = 'full';
 				if ( $image ) :
-					echo wp_get_attachment_image( $image, $size, false, array( 'data-animate' => 'fade-in' ) );
+					echo wp_get_attachment_image( $image, $size, false, array( 'data-animate' => 'fade-left' ) );
 				endif;
 				?>
 			</div>

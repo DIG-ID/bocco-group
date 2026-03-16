@@ -7,7 +7,7 @@
 				<p class="section-products__description" data-animate-child><?php the_field( 'products_description' ); ?></p>
 			</div>
 			<div class="col-12 col-md-12 col-lg-12 col-xl-7">
-				<div class="row product-cards-wrapper row-eq-height">
+				<div class="row product-cards-wrapper row-eq-height" data-animate="fade-right" data-animate-stagger="0.15">
 					<?php
 					if ( have_rows('products_repeater') ) :
 						while( have_rows('products_repeater') ) : the_row();
@@ -16,8 +16,8 @@
 							$product_description = get_sub_field('description');
 							$product_link        = get_sub_field('link');
 							?>
-							<div class="col-12 col-sm-12 col-md-6 col-lg-6 product-card-wrapper" data-animate="fade-right" data-animate-stagger="0.15">
-								<a href="<?php echo esc_url( $product_link ); ?>" data-animate-child>
+							<div class="col-12 col-sm-12 col-md-6 col-lg-6 product-card-wrapper" data-animate-child>
+								<a href="<?php echo esc_url( $product_link ); ?>" >
 									<article class="product-card">
 										<i class="<?php echo esc_attr( $product_icon ); ?>"></i>
 										<h3 class="product-card__title"><?php echo $product_title; ?></h3>

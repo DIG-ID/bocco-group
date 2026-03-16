@@ -23,14 +23,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
  *   data-animate-stagger="0.1"  — stagger children with [data-animate-child]
  */
 const presets = {
-  'fade-up':    { y: 60, opacity: 0 },
-  'fade-down':  { y: -60, opacity: 0 },
-  'fade-left':  { x: -60, opacity: 0 },
-  'fade-right': { x: 60, opacity: 0 },
-  'fade-in':    { opacity: 0 },
-  'zoom-in':    { scale: 0.85, opacity: 0 },
-  'zoom-out':   { scale: 1.15, opacity: 0 },
-  'flip-up':    { rotationX: 15, y: 40, opacity: 0, transformPerspective: 800 },
+  'fade-up':    { y: 60, autoAlpha: 0 },
+  'fade-down':  { y: -60, autoAlpha: 0 },
+  'fade-left':  { x: -60, autoAlpha: 0 },
+  'fade-right': { x: 60, autoAlpha: 0 },
+  'fade-in':    { autoAlpha: 0 },
+  'zoom-in':    { scale: 0.85, autoAlpha: 0 },
+  'zoom-out':   { scale: 1.15, autoAlpha: 0 },
+  'flip-up':    { rotationX: 15, y: 40, autoAlpha: 0, transformPerspective: 800 },
   'slide-up':   { y: 80 },
 };
 
@@ -43,12 +43,38 @@ function initAnimations() {
     const type = el.getAttribute('data-animate') || defaultPreset;
     const delay = parseFloat(el.getAttribute('data-animate-delay')) || 0;
     const duration = parseFloat(el.getAttribute('data-animate-duration')) || 0.8;
-    const start = el.getAttribute('data-animate-start') || 'top 75%';
+    const start = el.getAttribute('data-animate-start') || 'top 70%';
     const stagger = parseFloat(el.getAttribute('data-animate-stagger')) || 0;
     const once = el.getAttribute('data-animate-once') === 'true';
+    const eager = el.hasAttribute('data-animate-eager');
 
     const from = presets[type] || presets[defaultPreset];
     const to = resetProps(from);
+
+    // Eager mode: corre imediatamente, sem ScrollTrigger
+    if (eager) {
+      if (stagger > 0) {
+        const children = el.querySelectorAll('[data-animate-child]');
+        if (children.length) {
+          gsap.fromTo(children, from, {
+            ...to,
+            duration,
+            delay,
+            stagger,
+            ease: 'power2.out',
+          });
+          return;
+        }
+      }
+
+      gsap.fromTo(el, from, {
+        ...to,
+        duration,
+        delay,
+        ease: 'power2.out',
+      });
+      return;
+    }
 
     // Stagger mode: animate children instead of the parent
     if (stagger > 0) {
@@ -103,7 +129,7 @@ function resetProps(from) {
   const to = {};
   if ('y' in from) to.y = 0;
   if ('x' in from) to.x = 0;
-  if ('opacity' in from) to.opacity = 1;
+  if ('autoAlpha' in from) to.autoAlpha = 1;
   if ('scale' in from) to.scale = 1;
   if ('rotationX' in from) to.rotationX = 0;
   if ('transformPerspective' in from) to.transformPerspective = 800;

@@ -1,5 +1,5 @@
 <?php if ( have_rows( 'highlights_block' ) ) : ?>
-	<section id="section-highlights" class="section section-highlights">
+	<section id="section-highlights" class="section section-highlights" data-animate="fade-up" data-animate-eager>
 		<div class="container">
 			<div class="row">
 				<?php while ( have_rows( 'highlights_block' ) ) : the_row(); ?>
