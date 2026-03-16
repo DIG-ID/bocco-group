@@ -10,7 +10,7 @@
 			<div class="col-12 col-md-12 col-lg-6 col-xl-6 section-wbecontent-1__rightcol">
 				<div class="section-wbecontent-1__content-wrapper" data-animate="fade-right">
 					<p class="section-cmcontent-1__subtitle" data-animate="fade-right"><?php the_field( 'advantages_subtitle' ); ?></p>
-					<h1 class="section-cmcontent-1__title" data-animate="fade-right"><?php the_field( 'advantages_title' ); ?></h1>
+					<h2 class="section-cmcontent-1__title" data-animate="fade-right"><?php the_field( 'advantages_title' ); ?></h2>
 					<ul class="section-cmcontent-1__list" data-animate="fade-right" data-animate-stagger="0.15">
 						<?php
 						if ( have_rows( 'advantages_advantages_list' ) ) :

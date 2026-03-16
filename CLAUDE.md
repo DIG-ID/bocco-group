@@ -143,16 +143,44 @@ Adicionar nos template-parts PHP:
 - `data-animate="<preset>"` — tipo de animação (default: `fade-up`)
 - `data-animate-delay="0.2"` — atraso em segundos
 - `data-animate-duration="1"` — duração em segundos
-- `data-animate-start="top 75%"` — posição de trigger do ScrollTrigger
+- `data-animate-start="top 70%"` — posição de trigger do ScrollTrigger
 - `data-animate-once="true"` — anima só uma vez (default: repete ao re-entrar no viewport)
+- `data-animate-eager` — anima imediatamente no page load, sem ScrollTrigger (para elementos no topo da página)
+- `data-animate-scrub` — animação ligada 1:1 ao scroll (avança e recua com a posição)
+- `data-animate-scrub="2"` — scrub com suavização (maior = mais lag)
+- `data-animate-end="bottom top"` — posição final do ScrollTrigger (usado com scrub)
 - `data-animate-stagger="0.15"` — anima filhos em sequência (usar `data-animate-child` nos filhos)
 
 ### Presets disponíveis
 `fade-up`, `fade-down`, `fade-left`, `fade-right`, `fade-in`, `zoom-in`, `zoom-out`, `flip-up`, `slide-up`
 
+### Parallax
+Movimento contínuo ligado ao scroll (sem from/to de opacity):
+- `data-parallax="100"` — move 100px para cima durante o scroll
+- `data-parallax="-80"` — move 80px para baixo
+- `data-parallax-x="60"` — parallax horizontal
+- `data-parallax-speed="0.5"` — velocidade do scrub (default: 1)
+- `data-parallax-start` / `data-parallax-end` — posições do ScrollTrigger
+
+### Modos de animação
+| Modo | Comportamento |
+|---|---|
+| Normal (default) | Dispara ao entrar no viewport, reverse ao sair |
+| `data-animate-scrub` | Ligado 1:1 ao scroll — avança e recua com a posição |
+| `data-animate-eager` | Corre imediatamente no page load, sem ScrollTrigger |
+| `data-parallax` | Movimento contínuo de posição, sem from/to de opacity |
+
 ### Exemplo stagger
 ```html
 <div data-animate="fade-up" data-animate-stagger="0.15">
+  <div data-animate-child>Item 1</div>
+  <div data-animate-child>Item 2</div>
+</div>
+```
+
+### Exemplo scrub numa secção inteira
+```html
+<div data-animate="fade-left" data-animate-scrub data-animate-stagger="0.1">
   <div data-animate-child>Item 1</div>
   <div data-animate-child>Item 2</div>
 </div>

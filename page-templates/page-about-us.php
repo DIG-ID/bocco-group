@@ -52,7 +52,7 @@
 				</div>
 				<div class="team-members">
 					<div class="container">
-						<div class="row">
+						<div class="row" data-animate="fade-up" data-animate-stagger="0.15">
 							<?php
 							if ( have_rows( 'about_us_team' ) ) :
 								while( have_rows( 'about_us_team' ) ) : the_row();
@@ -60,8 +60,8 @@
 									$member_name     = get_sub_field( 'name' );
 									$member_position = get_sub_field( 'position' );
 									?>
-									<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 text-center" data-animate="fade-up" data-animate-stagger="0.25">
-										<div class="team-member text-center" data-animate-child>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 text-center"  data-animate-child>
+										<div class="team-member text-center">
 											<?php echo wp_get_attachment_image( $member_image, 'full' ); ?>
 											<div class="team-member__details">
 												<p class="team-member__name"><?php echo esc_html( $member_name ); ?></p>

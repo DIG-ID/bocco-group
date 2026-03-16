@@ -4,7 +4,7 @@
 			<div class="col-12 col-md-12 col-lg-6 col-xl-6 section-cmcontent-2__leftcol">
 			<div class="section-cmcontent-2__content-wrapper">
 					<p class="section-cmcontent-2__subtitle" data-animate="fade-left"><?php the_field( 'functions_subtitle' ); ?></p>
-					<h1 class="section-cmcontent-2__title" data-animate="fade-left"><?php the_field( 'functions_title' ); ?></h1>
+					<h2 class="section-cmcontent-2__title" data-animate="fade-left"><?php the_field( 'functions_title' ); ?></h2>
 					<ul class="section-cmcontent-2__list" data-animate="fade-left" data-animate-stagger="0.15">
 						<?php
 						if ( have_rows( 'functions_functions_list' ) ) :

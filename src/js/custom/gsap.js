@@ -20,6 +20,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
  *   data-animate-duration="1"   — duration in seconds
  *   data-animate-start="top 75%" — ScrollTrigger start position
  *   data-animate-once="true"    — play only once (default: repeats on re-enter)
+ *   data-animate-eager          — animate immediately on page load (no ScrollTrigger)
+ *   data-animate-scrub          — animation tied 1:1 to scroll position (forward + reverse)
+ *   data-animate-scrub="2"     — scrub with smoothing (higher = more lag behind scroll)
+ *   data-animate-end="bottom top" — ScrollTrigger end position (only used with scrub)
  *   data-animate-stagger="0.1"  — stagger children with [data-animate-child]
  */
 const presets = {
@@ -47,11 +51,14 @@ function initAnimations() {
     const stagger = parseFloat(el.getAttribute('data-animate-stagger')) || 0;
     const once = el.getAttribute('data-animate-once') === 'true';
     const eager = el.hasAttribute('data-animate-eager');
+    const hasScrub = el.hasAttribute('data-animate-scrub');
+    const scrubVal = el.getAttribute('data-animate-scrub');
+    const end = el.getAttribute('data-animate-end') || 'bottom top';
 
     const from = presets[type] || presets[defaultPreset];
     const to = resetProps(from);
 
-    // Eager mode: corre imediatamente, sem ScrollTrigger
+    // Eager mode: animate immediately, no ScrollTrigger
     if (eager) {
       if (stagger > 0) {
         const children = el.querySelectorAll('[data-animate-child]');
@@ -72,6 +79,45 @@ function initAnimations() {
         duration,
         delay,
         ease: 'power2.out',
+      });
+      return;
+    }
+
+    // Scrub mode: animation tied to scroll position
+    if (hasScrub) {
+      // scrub value: true (1:1), or a number for smoothing
+      const scrub = scrubVal && scrubVal !== '' ? parseFloat(scrubVal) : true;
+
+      if (stagger > 0) {
+        const children = el.querySelectorAll('[data-animate-child]');
+        if (children.length) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: el,
+              start: start,
+              end: end,
+              scrub: scrub,
+            },
+          });
+          tl.fromTo(children, from, {
+            ...to,
+            duration: duration,
+            stagger: stagger,
+            ease: 'none',
+          });
+          return;
+        }
+      }
+
+      gsap.fromTo(el, from, {
+        ...to,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: start,
+          end: end,
+          scrub: scrub,
+        },
       });
       return;
     }
@@ -136,9 +182,51 @@ function resetProps(from) {
   return to;
 }
 
+/**
+ * Parallax effect driven by scroll position.
+ *
+ * Usage in HTML:
+ *   data-parallax="100"         — moves 100px upward as you scroll (default direction: up)
+ *   data-parallax="-80"         — moves 80px downward as you scroll
+ *   data-parallax-x="60"       — horizontal parallax (positive = moves right)
+ *   data-parallax-speed="0.5"  — multiplier for scrub speed (default: 1)
+ *   data-parallax-start         — ScrollTrigger start (default: "top bottom")
+ *   data-parallax-end           — ScrollTrigger end (default: "bottom top")
+ */
+function initParallax() {
+  const elements = gsap.utils.toArray('[data-parallax], [data-parallax-x]');
+
+  elements.forEach((el) => {
+    const yVal = parseFloat(el.getAttribute('data-parallax')) || 0;
+    const xVal = parseFloat(el.getAttribute('data-parallax-x')) || 0;
+    const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 1;
+    const start = el.getAttribute('data-parallax-start') || 'top bottom';
+    const end = el.getAttribute('data-parallax-end') || 'bottom top';
+
+    const toVars = {};
+    if (yVal) toVars.y = yVal;
+    if (xVal) toVars.x = xVal;
+
+    gsap.to(el, {
+      ...toVars,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: el,
+        start: start,
+        end: end,
+        scrub: speed,
+      },
+    });
+  });
+}
+
 // Initialise after DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initAnimations);
+  document.addEventListener('DOMContentLoaded', () => {
+    initAnimations();
+    initParallax();
+  });
 } else {
   initAnimations();
+  initParallax();
 }
