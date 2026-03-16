@@ -1,5 +1,16 @@
 // webpack.mix.js
 
+const os = require('os');
+const path = require('path');
+
+// Caminho para os certificados do Local by WPEngine
+const certPath = path.join(
+  os.homedir(),
+  os.platform() === 'win32'
+    ? 'AppData/Roaming/Local/run/router/nginx/certs'
+    : 'Library/Application Support/Local/run/router/nginx/certs'
+);
+
 let mix = require('laravel-mix');
 
 mix
@@ -12,16 +23,20 @@ mix
   .js('src/js/google-maps.js', 'dist')
   .sass('src/sass/main.sass', 'dist')
   .sass('src/sass/admin-login.sass', 'dist')
-
+  .disableNotifications()
   .browserSync({
-    proxy: {
-      target: "https://boccogroup.digid/",
-      ws: true,
+    proxy: "https://boccogroup.digid/",
+    host: "boccogroup.digid",
+    open: "external",
+    port: 3000,
+    ws: true,
+    https: {
+      key: path.join(certPath, 'boccogroup.digid.key'),
+      cert: path.join(certPath, 'boccogroup.digid.crt'),
     },
-    https: true,
     files: ["./**/*.php", "./dist/js/*.js", "./dist/css/*.css"]
-  })
-  .disableNotifications();
+  });
+  
 
 if (!mix.inProduction()) {
   mix
