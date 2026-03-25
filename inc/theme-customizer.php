@@ -1,9 +1,17 @@
 <?php
 /**
- * Register theme customizer
+ * Theme Customizer registration and configuration.
+ *
+ * @package    BoccoGroup
+ * @subpackage Admin
  */
 
-
+/**
+ * Register theme Customizer panels, sections, settings and controls.
+ *
+ * @param WP_Customize_Manager $wp_customize The Customizer manager instance.
+ * @return void
+ */
 function boccog_theme_customizer_register( $wp_customize ) {
 
 	$wp_customize->add_panel(

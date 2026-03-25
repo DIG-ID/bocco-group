@@ -71,7 +71,8 @@ function boccog_theme_enqueue_styles() {
 	$theme_version = $the_theme->get( 'Version' );
 
 	if ( ! is_admin() ) :
-		wp_enqueue_style( 'theme-styles', get_stylesheet_directory_uri() . '/dist/main.css', array(), $theme_version );
+		wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap', array(), null );
+		wp_enqueue_style( 'theme-styles', get_stylesheet_directory_uri() . '/dist/main.css', array( 'google-fonts' ), $theme_version );
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'theme-scripts', get_stylesheet_directory_uri() . '/dist/main.js', array( 'jquery' ), $theme_version, true );
 		if ( is_page_template( 'page-templates/page-contacts.php' ) ) :
@@ -82,6 +83,27 @@ function boccog_theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'boccog_theme_enqueue_styles' );
+
+/**
+ * Add preconnect hints for Google Fonts to speed up font loading.
+ *
+ * @param array  $urls          Resource URLs.
+ * @param string $relation_type Relation type (preconnect, dns-prefetch, etc.).
+ * @return array
+ */
+function boccog_google_fonts_preconnect( $urls, $relation_type ) {
+	if ( 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href' => 'https://fonts.googleapis.com',
+		);
+		$urls[] = array(
+			'href'        => 'https://fonts.gstatic.com',
+			'crossorigin' => 'anonymous',
+		);
+	}
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'boccog_google_fonts_preconnect', 10, 2 );
 
 /**
  * Add preload hint for the main stylesheet to speed up CSS discovery.
@@ -98,6 +120,73 @@ function boccog_preload_main_css() {
 	echo '<link rel="preload" href="' . $css_url . '" as="style">' . "\n";
 }
 add_action( 'wp_head', 'boccog_preload_main_css', 1 );
+
+/**
+ * Dequeue unused WordPress default scripts and styles for performance.
+ *
+ * Removes: emoji scripts, block editor styles (unused in classic theme),
+ * jQuery Migrate, Dashicons on the front end, and Contact Form 7 assets
+ * on pages that do not use a CF7 form.
+ *
+ * @return void
+ */
+function boccog_dequeue_unused_assets() {
+
+	// Emoji — not used in this site.
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+	// Block editor styles — classic theme, Gutenberg blocks not used on the front end.
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_dequeue_style( 'global-styles' );
+	wp_dequeue_style( 'classic-themes' );
+
+	// jQuery Migrate — only needed for very old plugins/code targeting jQuery < 1.9.
+	wp_dequeue_script( 'jquery-migrate' );
+
+	// Dashicons — dequeue for non-logged-in visitors only; logged-in users
+	// need them for the admin bar icons on the front end.
+	if ( ! is_user_logged_in() ) {
+		wp_dequeue_style( 'dashicons' );
+	}
+
+	// Contact Form 7 — load only on pages that actually contain a CF7 form.
+	$cf7_templates = array(
+		'page-templates/page-contacts.php',
+		'page-templates/page-demo-request.php',
+		'page-templates/page-landing-page.php',
+		'page-templates/page-webinar.php',
+		'page-templates/page-igeho.php',
+	);
+
+	if ( ! is_page_template( $cf7_templates ) ) {
+		wp_dequeue_style( 'contact-form-7' );
+		wp_dequeue_script( 'contact-form-7' );
+	}
+
+}
+add_action( 'wp_enqueue_scripts', 'boccog_dequeue_unused_assets', 100 );
+
+/**
+ * Disable the WordPress emoji DNS prefetch link tag.
+ *
+ * @param array $urls          URLs to prefetch.
+ * @param string $relation_type The relation type (dns-prefetch, preconnect, etc.).
+ * @return array
+ */
+function boccog_remove_emoji_dns_prefetch( $urls, $relation_type ) {
+	if ( 'dns-prefetch' === $relation_type ) {
+		$urls = array_filter(
+			$urls,
+			function ( $url ) {
+				return false === strpos( $url, 's.w.org' );
+			}
+		);
+	}
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'boccog_remove_emoji_dns_prefetch', 10, 2 );
 
 /**
  * Set the ACF Google Maps API key.

@@ -1,10 +1,15 @@
 <?php
 /**
- * The custom theme tags file.
+ * Custom theme template tags.
+ *
+ * @package    BoccoGroup
+ * @subpackage Modules
  */
 
 /**
- * This function open the main content.
+ * Output the opening tag for the main content area.
+ *
+ * @return void
  */
 function boccog_theme_before_main_content() {
 	?>
@@ -15,7 +20,9 @@ function boccog_theme_before_main_content() {
 add_action( 'before_main_content', 'boccog_theme_before_main_content' );
 
 /**
- * This function closes the main content.
+ * Output the closing tag for the main content area.
+ *
+ * @return void
  */
 function boccog_theme_after_main_content() {
 	?>
