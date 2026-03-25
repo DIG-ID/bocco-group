@@ -1,3 +1,11 @@
+<?php
+/**
+ * The main site header template.
+ *
+ * @package    BoccoGroup
+ * @subpackage Templates
+ */
+?>
 <!DOCTYPE html>
 
 <html <?php language_attributes(); ?>>

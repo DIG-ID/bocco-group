@@ -1,7 +1,15 @@
 <?php
+/**
+ * Theme functions and definitions.
+ *
+ * @package    BoccoGroup
+ * @subpackage Admin
+ */
 
 /**
- * Setup theme
+ * Setup theme features, menus and image sizes.
+ *
+ * @return void
  */
 function boccog_theme_setup() {
 
@@ -32,7 +40,9 @@ function boccog_theme_setup() {
 add_action( 'after_setup_theme', 'boccog_theme_setup' );
 
 /**
- * Register our sidebars and widgetized areas.
+ * Register sidebars and widgetized areas.
+ *
+ * @return void
  */
 function boccog_theme_widgets_init() {
 
@@ -51,7 +61,9 @@ function boccog_theme_widgets_init() {
 add_action( 'widgets_init', 'boccog_theme_widgets_init' );
 
 /**
- * Enqueue styles and scripts
+ * Enqueue front-end styles and scripts.
+ *
+ * @return void
  */
 function boccog_theme_enqueue_styles() {
 
@@ -62,7 +74,6 @@ function boccog_theme_enqueue_styles() {
 		wp_enqueue_style( 'theme-styles', get_stylesheet_directory_uri() . '/dist/main.css', array(), $theme_version );
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'theme-scripts', get_stylesheet_directory_uri() . '/dist/main.js', array( 'jquery' ), $theme_version, true );
-		wp_register_style( 'googleFonts', 'fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap', array(), null );
 		if ( is_page_template( 'page-templates/page-contacts.php' ) ) :
 			wp_enqueue_script( 'google-map-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBAZN5TfX1aWmjodZ4e_6sOcaJV4D59jfo', array(), $theme_version, true );
 			wp_enqueue_script( 'google-map-settings', get_stylesheet_directory_uri() . '/dist/google-maps.js', array( 'jquery' ), $theme_version, true );
@@ -88,17 +99,15 @@ function boccog_preload_main_css() {
 }
 add_action( 'wp_head', 'boccog_preload_main_css', 1 );
 
-// Google maps
-function my_acf_init() {
+/**
+ * Set the ACF Google Maps API key.
+ *
+ * @return void
+ */
+function boccog_acf_init() {
 	acf_update_setting( 'google_api_key', 'AIzaSyBAZN5TfX1aWmjodZ4e_6sOcaJV4D59jfo' );
 }
-
-if ( is_page_template( 'page-templates/page-contacts.php' ) || is_admin() ) :
-	add_action( 'acf/init', 'my_acf_init' );
-endif;
-
-// Remove p tags from contact form 7
-//add_filter( 'wpcf7_autop_or_not', '__return_false' );
+add_action( 'acf/init', 'boccog_acf_init' );
 
 /**
  * Validation: image
@@ -153,14 +162,3 @@ require get_template_directory() . '/inc/custom-nav-walker.php';
 
 // Theme custom admin settings.
 require get_template_directory() . '/inc/theme-admin-settings.php';
-
-
-
-/*function console_log($output, $with_script_tags = true) {
-	$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-');';
-	if ($with_script_tags) {
-			$js_code = '<script>' . $js_code . '</script>';
-	}
-	echo $js_code;
-}*/

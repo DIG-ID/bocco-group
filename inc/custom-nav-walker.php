@@ -136,8 +136,6 @@ if ( ! class_exists( 'Custom_Walker_Nav_Menu' ) ) :
 			$atts['aria-expanded']       = $args->walker->has_children ? 'false' : '';
 
 
-			//console_log($menu_item);
-			//console_log($args);
 			/**
 			 * Filters the HTML attributes applied to a menu item's anchor element.
 			 *
