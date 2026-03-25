@@ -1,4 +1,4 @@
-<header id="main-header" class="main-header fixed-top" itemscope itemtype="http://schema.org/WebSite">
+<header id="main-header" class="main-header fixed-top" itemscope itemtype="https://schema.org/WebSite">
 	<nav class="navbar navbar-expand-xl navbar-dark" role="navigation">
 		<div class="container">
 			<?php if ( is_front_page() && is_home() ) : ?>

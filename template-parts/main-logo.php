@@ -1,5 +1,5 @@
 <svg enable-background="new 0 0 202.4 60" version="1.1" viewBox="0 0 202.4 60" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-	<style type="text/css">
+	<style>
 		.st0{fill:#FFFFFF;}
 		.st1{fill:url(#a);}
 	</style>

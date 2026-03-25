@@ -35,8 +35,8 @@
 					$hero_img    = get_field( 'hero_image' );
 					$hero_img_xl = get_field( 'hero_image_xl' );
 					if ( $hero_img || $hero_img_xl ) :
-						echo wp_get_attachment_image( $hero_img, 'full', false, array( 'class' => 'section-webinar-hero__image--sm' ) );
-						echo wp_get_attachment_image( $hero_img_xl, 'full', false, array( 'class' => 'section-webinar-hero__image--xl' ) );
+						echo wp_get_attachment_image( $hero_img, 'full', false, array( 'class' => 'section-webinar-hero__image--sm', 'fetchpriority' => 'high', 'loading' => 'eager' ) );
+						echo wp_get_attachment_image( $hero_img_xl, 'full', false, array( 'class' => 'section-webinar-hero__image--xl', 'fetchpriority' => 'high', 'loading' => 'eager' ) );
 					endif;
 					?>
 				</div>

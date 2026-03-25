@@ -10,7 +10,7 @@
 				<?php
 				$image = get_field( 'hero_image' );
 				if ( $image ) :
-					echo wp_get_attachment_image( $image, 'full' );
+					echo wp_get_attachment_image( $image, 'full', false, array( 'fetchpriority' => 'high', 'loading' => 'eager' ) );
 				endif;
 				?>
 			</div>
