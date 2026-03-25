@@ -1,4 +1,4 @@
-import bootstrap from 'bootstrap';
+import 'bootstrap/js/dist/collapse';
 
 import "./custom/lenis";
 import "./custom/gsap";

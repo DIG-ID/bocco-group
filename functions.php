@@ -61,7 +61,7 @@ function boccog_theme_enqueue_styles() {
 	if ( ! is_admin() ) :
 		wp_enqueue_style( 'theme-styles', get_stylesheet_directory_uri() . '/dist/main.css', array(), $theme_version );
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'theme-scripts', get_stylesheet_directory_uri() . '/dist/main.js', array( 'jquery' ), $theme_version, false );
+		wp_enqueue_script( 'theme-scripts', get_stylesheet_directory_uri() . '/dist/main.js', array( 'jquery' ), $theme_version, true );
 		wp_register_style( 'googleFonts', 'fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap', array(), null );
 		if ( is_page_template( 'page-templates/page-contacts.php' ) ) :
 			wp_enqueue_script( 'google-map-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBAZN5TfX1aWmjodZ4e_6sOcaJV4D59jfo', array(), $theme_version, true );
@@ -71,6 +71,22 @@ function boccog_theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'boccog_theme_enqueue_styles' );
+
+/**
+ * Add preload hint for the main stylesheet to speed up CSS discovery.
+ *
+ * @return void
+ */
+function boccog_preload_main_css() {
+	if ( is_admin() ) {
+		return;
+	}
+	$the_theme     = wp_get_theme();
+	$theme_version = $the_theme->get( 'Version' );
+	$css_url       = esc_url( get_stylesheet_directory_uri() . '/dist/main.css?ver=' . $theme_version );
+	echo '<link rel="preload" href="' . $css_url . '" as="style">' . "\n";
+}
+add_action( 'wp_head', 'boccog_preload_main_css', 1 );
 
 // Google maps
 function my_acf_init() {
