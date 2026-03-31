@@ -31,4 +31,5 @@
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
 		<?php do_action( 'wp_body_open' ); ?>
+		<a href="#main-content" class="skip-link"><?php esc_html_e( 'Skip to main content', 'bocco-group' ); ?></a>
 		<?php get_template_part( 'template-parts/main-header' ); ?>

@@ -36,3 +36,11 @@
     &:hover
       background-color: $accent
       box-shadow: 0px 6px 26px transparentize($accent, 0.7)
+
+.skip-link
+  @apply absolute -top-10 left-4 text-white font-bold text-sm uppercase tracking-wider px-4 py-2 no-underline z-50 transition-all duration-300 ease-in-out
+  background-color: var(--main-primary)
+  font-family: $roboto
+  letter-spacing: 0.45px
+  &:focus
+    @apply top-4
