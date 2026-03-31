@@ -38,9 +38,30 @@
       box-shadow: 0px 6px 26px transparentize($accent, 0.7)
 
 .skip-link
-  @apply absolute -top-10 left-4 text-white font-bold text-sm uppercase tracking-wider px-4 py-2 no-underline z-50 transition-all duration-300 ease-in-out
+  position: absolute
+  top: -1px
+  left: 16px
+  display: inline-block
+  padding: 12px 24px
   background-color: var(--main-primary)
+  color: #ffffff
   font-family: $roboto
+  font-weight: bold
+  font-size: 15px
+  line-height: 18px
   letter-spacing: 0.45px
+  text-transform: uppercase
+  text-decoration: none
+  border-radius: 26px
+  box-shadow: 0 8px 20px rgba(0, 64, 229, 0.2)
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out
+  transform: translateY(-100%)
+  opacity: 0
+  z-index: 9999
+
   &:focus
-    @apply top-4
+    transform: translateY(0)
+    opacity: 1
+    outline: 2px solid rgba(77, 235, 179, 0.9)
+    outline-offset: 2px
+    top: 16px
