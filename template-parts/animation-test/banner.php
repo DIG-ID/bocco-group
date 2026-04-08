@@ -18,7 +18,7 @@
     width: 100%;
     height: 315px;
     overflow: hidden;
-    background: #004A80;
+    background: #0090DF;
   }
   .canvas {
     position: absolute;
@@ -31,43 +31,43 @@
   }
   .b1 {
     width: 80%; height: 300%;
-    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #005F99 55%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 55%, transparent 75%);
     top: -120%; left: -15%;
     animation: m1 14s ease-in-out infinite;
   }
   .b2 {
     width: 75%; height: 280%;
-    background: radial-gradient(circle at 50% 50%, #0028B5 0%, #005F99 50%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #0040E5 0%, #0090DF 50%, transparent 75%);
     top: -80%; left: 25%;
     animation: m2 17s ease-in-out infinite;
   }
   .b3 {
     width: 70%; height: 260%;
-    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #0028B5 55%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0040E5 55%, transparent 75%);
     top: -50%; left: 55%;
     animation: m3 12s ease-in-out infinite;
   }
   .b4 {
     width: 65%; height: 250%;
-    background: radial-gradient(circle at 50% 50%, #005F99 0%, #0F8F62 50%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #0090DF 0%, #4DEBB3 50%, transparent 75%);
     top: 20%; left: -5%;
     animation: m4 19s ease-in-out infinite;
   }
   .b5 {
     width: 60%; height: 240%;
-    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #005F99 45%, #0028B5 70%, transparent 82%);
+    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 45%, #0040E5 70%, transparent 82%);
     top: 10%; left: 40%;
     animation: m5 15s ease-in-out infinite;
   }
   .b6 {
     width: 55%; height: 220%;
-    background: radial-gradient(circle at 50% 50%, #0028B5 0%, #0F8F62 60%, transparent 78%);
+    background: radial-gradient(circle at 50% 50%, #0040E5 0%, #4DEBB3 60%, transparent 78%);
     top: -30%; left: 70%;
     animation: m6 16s ease-in-out infinite;
   }
   .b7 {
     width: 50%; height: 200%;
-    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #005F99 55%, transparent 76%);
+    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 55%, transparent 76%);
     top: 30%; left: 15%;
     animation: m7 13s ease-in-out infinite;
   }
