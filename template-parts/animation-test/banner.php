@@ -18,12 +18,12 @@
     width: 100%;
     height: 315px;
     overflow: hidden;
-    background: #0090DF;
+    background: #004A80;
   }
   .canvas {
     position: absolute;
     inset: -80px;
-    filter: blur(60px) saturate(1.3);
+    filter: blur(60px) saturate(1.2);
   }
   .blob {
     position: absolute;
@@ -31,92 +31,92 @@
   }
   .b1 {
     width: 80%; height: 300%;
-    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 55%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #005F99 55%, transparent 75%);
     top: -120%; left: -15%;
-    animation: m1 7s ease-in-out infinite;
+    animation: m1 14s ease-in-out infinite;
   }
   .b2 {
     width: 75%; height: 280%;
-    background: radial-gradient(circle at 50% 50%, #0040E5 0%, #0090DF 50%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #0028B5 0%, #005F99 50%, transparent 75%);
     top: -80%; left: 25%;
-    animation: m2 8s ease-in-out infinite;
+    animation: m2 17s ease-in-out infinite;
   }
   .b3 {
     width: 70%; height: 260%;
-    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0040E5 55%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #0028B5 55%, transparent 75%);
     top: -50%; left: 55%;
-    animation: m3 6s ease-in-out infinite;
+    animation: m3 12s ease-in-out infinite;
   }
   .b4 {
     width: 65%; height: 250%;
-    background: radial-gradient(circle at 50% 50%, #0090DF 0%, #4DEBB3 50%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, #005F99 0%, #0F8F62 50%, transparent 75%);
     top: 20%; left: -5%;
-    animation: m4 9s ease-in-out infinite;
+    animation: m4 19s ease-in-out infinite;
   }
   .b5 {
     width: 60%; height: 240%;
-    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 45%, #0040E5 70%, transparent 82%);
+    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #005F99 45%, #0028B5 70%, transparent 82%);
     top: 10%; left: 40%;
-    animation: m5 7s ease-in-out infinite;
+    animation: m5 15s ease-in-out infinite;
   }
   .b6 {
     width: 55%; height: 220%;
-    background: radial-gradient(circle at 50% 50%, #0040E5 0%, #4DEBB3 60%, transparent 78%);
+    background: radial-gradient(circle at 50% 50%, #0028B5 0%, #0F8F62 60%, transparent 78%);
     top: -30%; left: 70%;
-    animation: m6 8s ease-in-out infinite;
+    animation: m6 16s ease-in-out infinite;
   }
   .b7 {
     width: 50%; height: 200%;
-    background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 55%, transparent 76%);
+    background: radial-gradient(circle at 50% 50%, #0F8F62 0%, #005F99 55%, transparent 76%);
     top: 30%; left: 15%;
-    animation: m7 6s ease-in-out infinite;
+    animation: m7 13s ease-in-out infinite;
   }
 
   @keyframes m1 {
     0%   { transform: translate(0, 0) scale(1); }
-    25%  { transform: translate(22%, 18%) scale(1.15); }
-    50%  { transform: translate(8%, -20%) scale(0.88); }
-    75%  { transform: translate(-18%, 12%) scale(1.12); }
+    25%  { transform: translate(32%, 24%) scale(1.2); }
+    50%  { transform: translate(10%, -30%) scale(0.82); }
+    75%  { transform: translate(-28%, 18%) scale(1.16); }
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes m2 {
     0%   { transform: translate(0, 0) scale(1); }
-    25%  { transform: translate(-24%, 16%) scale(0.86); }
-    50%  { transform: translate(18%, 22%) scale(1.14); }
-    75%  { transform: translate(10%, -18%) scale(0.9); }
+    25%  { transform: translate(-34%, 22%) scale(0.8); }
+    50%  { transform: translate(26%, 32%) scale(1.18); }
+    75%  { transform: translate(14%, -26%) scale(0.85); }
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes m3 {
     0%   { transform: translate(0, 0) scale(1); }
-    33%  { transform: translate(26%, -22%) scale(1.16); }
-    66%  { transform: translate(-14%, 20%) scale(0.85); }
+    33%  { transform: translate(36%, -30%) scale(1.2); }
+    66%  { transform: translate(-20%, 28%) scale(0.8); }
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes m4 {
     0%   { transform: translate(0, 0) scale(1); }
-    25%  { transform: translate(28%, -20%) scale(1.18); }
-    50%  { transform: translate(-10%, 24%) scale(0.84); }
-    75%  { transform: translate(16%, 10%) scale(1.1); }
+    25%  { transform: translate(38%, -26%) scale(1.22); }
+    50%  { transform: translate(-16%, 34%) scale(0.78); }
+    75%  { transform: translate(22%, 14%) scale(1.14); }
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes m5 {
     0%   { transform: translate(0, 0) scale(1); }
-    30%  { transform: translate(-22%, -26%) scale(1.16); }
-    60%  { transform: translate(20%, 14%) scale(0.83); }
-    80%  { transform: translate(-8%, -12%) scale(1.08); }
+    30%  { transform: translate(-30%, -34%) scale(1.2); }
+    60%  { transform: translate(28%, 20%) scale(0.79); }
+    80%  { transform: translate(-12%, -16%) scale(1.12); }
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes m6 {
     0%   { transform: translate(0, 0) scale(1); }
-    33%  { transform: translate(-28%, 18%) scale(1.14); }
-    66%  { transform: translate(16%, 26%) scale(0.85); }
+    33%  { transform: translate(-36%, 24%) scale(1.18); }
+    66%  { transform: translate(22%, 34%) scale(0.8); }
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes m7 {
     0%   { transform: translate(0, 0) scale(1); }
-    25%  { transform: translate(24%, -28%) scale(1.17); }
-    50%  { transform: translate(-20%, 16%) scale(0.86); }
-    75%  { transform: translate(12%, 22%) scale(1.1); }
+    25%  { transform: translate(32%, -36%) scale(1.2); }
+    50%  { transform: translate(-28%, 22%) scale(0.81); }
+    75%  { transform: translate(16%, 30%) scale(1.14); }
     100% { transform: translate(0, 0) scale(1); }
   }
 </style>
