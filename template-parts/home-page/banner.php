@@ -16,17 +16,40 @@
 			</div>
 			<div class="col-10 col-lg-6 order-0 order-sm-0 order-md-0 order-lg-1 order-xl-1 mb-5 mb-lg-0">
 				<?php
-				$image = get_field( 'banner_image' );
-				if ( $image ) :
-					echo wp_get_attachment_image(
-						$image,
-						'full',
-						false,
-						array(
-							'fetchpriority' => 'high',
-							'loading'       => 'eager',
-						)
-					);
+				if ( 'video' === get_field( 'banner_format' ) ) :
+					$video  = get_field( 'banner_video_file' );
+					$poster = get_field( 'banner_video_poster' );
+					if ( $video ) :
+						$poster_url = $poster ? wp_get_attachment_image_url( $poster, 'full' ) : '';
+						?>
+						<video
+							autoplay
+							loop
+							muted
+							playsinline
+							preload="auto"
+							aria-hidden="true"
+							<?php if ( $poster_url ) : ?>
+								poster="<?php echo esc_url( $poster_url ); ?>"
+							<?php endif; ?>
+						>
+							<source src="<?php echo esc_url( $video ); ?>" type="video/webm">
+						</video>
+						<?php
+					endif;
+				else :
+					$image = get_field( 'banner_image' );
+					if ( $image ) :
+						echo wp_get_attachment_image(
+							$image,
+							'full',
+							false,
+							array(
+								'fetchpriority' => 'high',
+								'loading'       => 'eager',
+							)
+						);
+					endif;
 				endif;
 				?>
 			</div>
