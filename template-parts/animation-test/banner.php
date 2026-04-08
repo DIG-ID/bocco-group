@@ -18,7 +18,7 @@
     width: 100%;
     height: 315px;
     overflow: hidden;
-    background: #1a9fd4;
+    background: #0090DF;
   }
   .canvas {
     position: absolute;
@@ -33,43 +33,43 @@
     width: 80%; height: 300%;
     background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 55%, transparent 75%);
     top: -120%; left: -15%;
-    animation: m1 18s ease-in-out infinite;
+    animation: m1 11s ease-in-out infinite;
   }
   .b2 {
     width: 75%; height: 280%;
     background: radial-gradient(circle at 50% 50%, #0040E5 0%, #0090DF 50%, transparent 75%);
     top: -80%; left: 25%;
-    animation: m2 22s ease-in-out infinite;
+    animation: m2 13s ease-in-out infinite;
   }
   .b3 {
     width: 70%; height: 260%;
     background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0040E5 55%, transparent 75%);
     top: -50%; left: 55%;
-    animation: m3 15s ease-in-out infinite;
+    animation: m3 9s ease-in-out infinite;
   }
   .b4 {
     width: 65%; height: 250%;
     background: radial-gradient(circle at 50% 50%, #0090DF 0%, #4DEBB3 50%, transparent 75%);
     top: 20%; left: -5%;
-    animation: m4 25s ease-in-out infinite;
+    animation: m4 15s ease-in-out infinite;
   }
   .b5 {
     width: 60%; height: 240%;
     background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 45%, #0040E5 70%, transparent 82%);
     top: 10%; left: 40%;
-    animation: m5 19s ease-in-out infinite;
+    animation: m5 11s ease-in-out infinite;
   }
   .b6 {
     width: 55%; height: 220%;
     background: radial-gradient(circle at 50% 50%, #0040E5 0%, #4DEBB3 60%, transparent 78%);
     top: -30%; left: 70%;
-    animation: m6 21s ease-in-out infinite;
+    animation: m6 12s ease-in-out infinite;
   }
   .b7 {
     width: 50%; height: 200%;
     background: radial-gradient(circle at 50% 50%, #4DEBB3 0%, #0090DF 55%, transparent 76%);
     top: 30%; left: 15%;
-    animation: m7 16s ease-in-out infinite;
+    animation: m7 10s ease-in-out infinite;
   }
 
   @keyframes m1 {
