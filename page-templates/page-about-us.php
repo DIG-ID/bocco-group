@@ -10,14 +10,19 @@
 <?php get_header(); ?>
 	<?php do_action( 'before_main_content' ); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<header class="page-header">
-				<div class="container">
-					<div class="row justify-content-center align-items-center">
-						<div class="col">
-							<h1 class="page-title text-center"><?php echo wp_kses_post( wpautop( get_field( 'about_us_title' ) ) ); ?></h1>
-						</div>
+			<header class="page-header p-0 position-relative">
+				<div class="wrap">
+					<div class="canvas">
+						<div class="blob b1"></div>
+						<div class="blob b2"></div>
+						<div class="blob b3"></div>
+						<div class="blob b4"></div>
+						<div class="blob b5"></div>
+						<div class="blob b6"></div>
+						<div class="blob b7"></div>
 					</div>
 				</div>
+				<h1 class="page-title animated-bg text-center"><?php echo wp_kses_post( wpautop( get_field( 'about_us_title' ) ) ); ?></h1>
 			</header>
 			<section class="page-content about-us-content">
 				<div class="container">
