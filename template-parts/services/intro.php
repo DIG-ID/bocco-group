@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-12 col-md-12 col-lg-6 col-xl-6 section-servicesintro__leftcol">
 				<div class="section-servicesintro__img-pack" data-animate="fade-left">
-					<img class="section-cmcontent-3__img-svg" src="<?php echo esc_url( wp_upload_dir()['url'] . '/01_Header.svg' ); ?>">
+					<img class="section-cmcontent-3__img-svg" src="<?php echo esc_url( wp_upload_dir()['url'] . '/bocco-illustration2.svg' ); ?>">
 				</div>
 			</div>
 			<div class="col-12 col-md-12 col-lg-6 col-xl-6 section-servicesintro__rightcol">
