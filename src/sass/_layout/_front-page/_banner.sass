@@ -19,6 +19,27 @@
     color: #fff
     margin-bottom: 40px
     overflow-wrap: normal
+  .typewriter-placeholder
+    visibility: hidden
+    display: block
+  .typewriter-overlay
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+  .typewriter-cursor
+    font-weight: 300
+    color: $accent
+    animation: blink-cursor 0.75s step-end infinite
+    margin-left: 2px
+  // Hide banner intro elements in CSS to prevent FOUC before JS runs
+  [data-banner-subtitle],
+  [data-banner-cta]
+    opacity: 0
+    visibility: hidden
+  [data-banner-typewriter]
+    opacity: 0
+    visibility: hidden
   &__subtitle
     font-weight: 500
     font-size: 20px
@@ -40,6 +61,12 @@
       border-color: $accent
     &:focus
       box-shadow: none
+
+@keyframes blink-cursor
+  0%, 100%
+    opacity: 1
+  50%
+    opacity: 0
 
 @include media-breakpoint-down(lg)
   .section-banner

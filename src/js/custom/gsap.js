@@ -220,13 +220,110 @@ function initParallax() {
   });
 }
 
+/**
+ * Banner intro timeline: subtitle fade-in → title typewriter → CTA fade-up.
+ *
+ * Markup contract (data attributes on banner.php):
+ *   [data-banner-intro]      — wrapper (timeline scope)
+ *   [data-banner-subtitle]   — overline / subtitle
+ *   [data-banner-typewriter] — title with typewriter effect
+ *   [data-banner-cta]        — call-to-action button
+ *
+ * Optional on [data-banner-typewriter]:
+ *   data-banner-cursor="persist" — cursor keeps blinking after typing (default)
+ *   data-banner-cursor="hide"    — cursor fades out after typing finishes
+ */
+function initBannerIntro() {
+  const wrapper = document.querySelector('[data-banner-intro]');
+  if (!wrapper) return;
+
+  const subtitle = wrapper.querySelector('[data-banner-subtitle]');
+  const titleEl = wrapper.querySelector('[data-banner-typewriter]');
+  const cta = wrapper.querySelector('[data-banner-cta]');
+  const cursorMode = titleEl ? (titleEl.getAttribute('data-banner-cursor') || 'persist') : 'persist';
+
+  // Set initial states (CSS already hides with opacity:0/visibility:hidden)
+  if (subtitle) gsap.set(subtitle, { autoAlpha: 0, y: 20 });
+  if (cta) gsap.set(cta, { autoAlpha: 0, y: 20 });
+
+  // Prepare typewriter structure
+  const titleText = titleEl ? titleEl.textContent.trim() : '';
+  let textSpan = null;
+  let cursorEl = null;
+  if (titleEl && titleText) {
+    titleEl.textContent = '';
+    titleEl.style.position = 'relative';
+
+    const placeholder = document.createElement('span');
+    placeholder.className = 'typewriter-placeholder';
+    placeholder.textContent = titleText;
+
+    textSpan = document.createElement('span');
+    textSpan.className = 'typewriter-text';
+
+    cursorEl = document.createElement('span');
+    cursorEl.className = 'typewriter-cursor';
+    cursorEl.textContent = '|';
+
+    const overlay = document.createElement('span');
+    overlay.className = 'typewriter-overlay';
+    overlay.appendChild(textSpan);
+    overlay.appendChild(cursorEl);
+
+    titleEl.appendChild(placeholder);
+    titleEl.appendChild(overlay);
+
+    // Reveal the title container (CSS hid it to prevent FOUC)
+    gsap.set(titleEl, { autoAlpha: 1 });
+  }
+
+  // Build the timeline
+  const tl = gsap.timeline({ delay: 0.3 });
+
+  // 1. Subtitle fade-in
+  if (subtitle) {
+    tl.to(subtitle, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power2.out',
+    });
+  }
+
+  // 2. Title typewriter
+  if (textSpan && titleText) {
+    tl.to(textSpan, {
+      text: { value: titleText, delimiter: '' },
+      duration: titleText.length * 0.04,
+      ease: 'none',
+      onComplete: () => {
+        if (cursorEl && cursorMode === 'hide') {
+          gsap.to(cursorEl, { autoAlpha: 0, delay: 1.5, duration: 0.4 });
+        }
+      },
+    }, '+=0.2');
+  }
+
+  // 3. CTA fade-up — overlaps slightly with end of typewriter for smooth flow
+  if (cta) {
+    tl.to(cta, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+    }, '-=0.3');
+  }
+}
+
 // Initialise after DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initParallax();
+    initBannerIntro();
   });
 } else {
   initAnimations();
   initParallax();
+  initBannerIntro();
 }

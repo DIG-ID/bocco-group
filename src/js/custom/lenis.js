@@ -1,8 +1,9 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { TextPlugin } from 'gsap/TextPlugin';
 import Lenis from 'lenis';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 // Initialise Lenis
 const lenis = new Lenis({
