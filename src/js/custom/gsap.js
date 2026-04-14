@@ -294,7 +294,7 @@ function initBannerIntro() {
   if (textSpan && titleText) {
     tl.to(textSpan, {
       text: { value: titleText, delimiter: '' },
-      duration: titleText.length * 0.04,
+      duration: titleText.length * 0.08,
       ease: 'none',
       onComplete: () => {
         if (cursorEl && cursorMode === 'hide') {

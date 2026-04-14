@@ -134,8 +134,8 @@ Cada directório de produto contém: `intro.php`, `content-1.php`, `content-2.ph
 ## Animações (GSAP + Lenis)
 
 ### Arquitectura JS
-- `src/js/custom/lenis.js` — inicializa Lenis + GSAP + ScrollTrigger juntos; o `gsap.ticker` é o **único** RAF loop (nunca usar `requestAnimationFrame` separado para o Lenis). Expõe `window.lenis` globalmente.
-- `src/js/custom/gsap.js` — presets de animação com `data-animate`; usa timelines `gsap.fromTo()` por elemento para permitir reverse suave.
+- `src/js/custom/lenis.js` — inicializa Lenis + GSAP + ScrollTrigger + TextPlugin juntos; o `gsap.ticker` é o **único** RAF loop (nunca usar `requestAnimationFrame` separado para o Lenis). Expõe `window.lenis` globalmente.
+- `src/js/custom/gsap.js` — presets de animação com `data-animate`, parallax, e banner intro timeline (typewriter); usa timelines `gsap.fromTo()` por elemento para permitir reverse suave.
 - Ordem de import no `main.js`: `lenis` → `gsap` → `custom` → `swiper` → `fancybox`
 
 ### Data attributes para animações
@@ -169,6 +169,7 @@ Movimento contínuo ligado ao scroll (sem from/to de opacity):
 | `data-animate-scrub` | Ligado 1:1 ao scroll — avança e recua com a posição |
 | `data-animate-eager` | Corre imediatamente no page load, sem ScrollTrigger |
 | `data-parallax` | Movimento contínuo de posição, sem from/to de opacity |
+| `data-banner-intro` | Timeline sequencial: subtitle → typewriter → CTA (ver secção dedicada) |
 
 ### Exemplo stagger
 ```html
@@ -189,6 +190,47 @@ Movimento contínuo ligado ao scroll (sem from/to de opacity):
 ### Exemplo em `wp_get_attachment_image`
 ```php
 echo wp_get_attachment_image( $image, $size, false, array( 'data-animate' => 'fade-in' ) );
+```
+
+### Banner Intro Timeline (typewriter)
+Timeline sequencial no banner da home page. Usa o GSAP TextPlugin (registado em `lenis.js`).
+
+**Plugins:** `TextPlugin` importado e registado em `src/js/custom/lenis.js`
+
+**Data attributes (em `template-parts/home-page/banner.php`):**
+- `data-banner-intro` — wrapper da timeline (na coluna de texto)
+- `data-banner-subtitle` — overline/subtitle (fade-in + slide up)
+- `data-banner-typewriter` — título com efeito typewriter
+- `data-banner-cursor="persist"` — cursor fica a piscar no fim (default)
+- `data-banner-cursor="hide"` — cursor desaparece 1.5s após terminar
+- `data-banner-cta` — botão call-to-action (fade-in + slide up)
+
+**Sequência da timeline:**
+1. Subtitle fade-in (0.5s)
+2. Título typewriter caracter a caracter (0.04s/char)
+3. Botão fade-up (0.6s, sobrepõe 0.3s com o fim do typewriter)
+
+**Anti-FOUC:** Os elementos `[data-banner-subtitle]`, `[data-banner-typewriter]` e `[data-banner-cta]` são escondidos via CSS (`opacity: 0; visibility: hidden`) em `_banner.sass` para evitar flash de conteúdo antes do JS correr.
+
+**Estrutura interna do typewriter (gerada pelo JS):**
+```html
+<h1 data-banner-typewriter style="position: relative">
+  <span class="typewriter-placeholder">texto completo (invisível, reserva altura)</span>
+  <span class="typewriter-overlay">
+    <span class="typewriter-text">texto animado...</span>
+    <span class="typewriter-cursor">|</span>
+  </span>
+</h1>
+```
+O `.typewriter-placeholder` garante que o layout não muda durante a animação (responsive-safe).
+
+**Exemplo completo:**
+```php
+<div data-banner-intro>
+  <p data-banner-subtitle><?php the_field( 'banner_subtitle' ); ?></p>
+  <h1 data-banner-typewriter><?php the_field( 'banner_title' ); ?></h1>
+  <a href="..." data-banner-cta>Button</a>
+</div>
 ```
 
 ### CSS — evitar conflitos
