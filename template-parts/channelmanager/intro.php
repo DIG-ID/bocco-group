@@ -10,7 +10,7 @@
 			</div>
 			<div class="col-12 col-md-12 col-lg-6 col-xl-6 section-cmintro__rightcol">
 				<div class="section-cmintro__img-pack">
-					<img src="<?php echo esc_url( wp_upload_dir()['url'] . '/ChannelM_Overview.png' ); ?>" data-animate="fade-right">
+					<img src="<?php echo esc_url( wp_upload_dir()['url'] . '/channel-manager-mocukp-laptop.png' ); ?>" data-animate="fade-right">
 				</div>
 			</div>
 		</div>
