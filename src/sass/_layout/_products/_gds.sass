@@ -32,7 +32,7 @@
     &__img-pack
         position: relative
         display: block
-        margin-left: -160px
+        margin-left: -90px
 
 .section-gdscontent-1
     position: relative
@@ -157,6 +157,67 @@
     &__leftcol
         padding: 0 0 0 60px
 
+.section-gdscontent-3
+    padding: 130px 0
+    background-color: $background-grey
+    &__subtitle
+        font-family: $roboto
+        font-size: 18px
+        text-transform: uppercase
+        color: $electric-blue
+    &__title
+        font-family: $roboto
+        font-size: 42px
+        font-weight: 400
+        color: $blue
+        margin-bottom: 30px
+        max-width: 400px
+    &__list
+        list-style: none
+        padding-left: 5px
+        li
+            font-family: $roboto
+            font-size: 22px
+            color: $blue
+            position: relative
+            &::before
+                content: "●"
+                color: $electric-blue
+                display: inline-block
+                width: 1em
+                margin-left: -1em
+        p
+            font-family: $roboto
+            font-size: 17px
+            color: $body-text
+            max-width: 500px
+            margin-bottom: 30px
+    &__content-wrapper
+        max-width: 400px
+        margin-top: 70px
+    &__img-svg
+        float: right
+        margin-right: 80px
+        max-width: 100%
+        height: auto
+        object-fit: cover
+    &__img-svg-notfloat
+        margin-top: 60px
+        max-width: 100%
+        height: auto
+        object-fit: cover
+    &__leftcol
+        padding: 0 60px 0 0
+    &__rightcol
+        padding: 0 0 0 60px
+
+.products-template-page-gds
+    .section-wbecontent-2
+        background-color: #edf1fd
+        li
+            &:last-child::before
+                content: ''
+
 @include media-breakpoint-down(xl)
     .section-gdsintro
         &__content-wrapper
@@ -264,5 +325,21 @@
         &__img-abbot2
             left: 115px
             top: 270px
+
+    .section-gdscontent-3
+        padding: 50px 35px
+        &__leftcol
+            padding: 0
+        &__rightcol
+            padding: 0
+        &__subtitle
+            font-size: 13px
+        &__title
+            font-size: 32px
+            line-height: 32px
+        &__text
+            font-size: 16px
+        &__img-svg
+            float: none
 
 @include media-breakpoint-down(sm)
