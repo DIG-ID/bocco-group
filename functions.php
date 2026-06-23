@@ -252,15 +252,4 @@ require get_template_directory() . '/inc/custom-nav-walker.php';
 // Theme custom admin settings.
 require get_template_directory() . '/inc/theme-admin-settings.php';
 
-// Remove "Archive:" prefix from archive titles in the document title.
-add_filter( 'document_title_parts', function( $title ) {
 
-    if ( is_archive() && isset( $title['title'] ) ) {
-
-        $title['title'] = preg_replace( '/^(Archive|Archiv):\s*/i', '', $title['title'] );
-
-    }
-
-    return $title;
-
-});
