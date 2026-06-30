@@ -53,7 +53,6 @@
 						)
 					);
 					?>
-					<p><?php esc_html_e( 'Developed by:', 'bocco-group' ); ?> <a href="https://dig.id" target="_blank"><?php echo esc_html( 'dig.id' ); ?></a></p>
 				</div>
 			</div>
 		</div>
